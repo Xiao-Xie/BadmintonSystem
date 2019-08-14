@@ -1,11 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom';
+import React from 'react';
+import App from './components/App.jsx';
 
-class App extends React.Component {
-  render() {
-    return <div>Hello {this.props.name}</div>;
-  }
-}
-
-var mountNode = document.getElementById("app");
-ReactDOM.render(<App name="Jane" />, mountNode);
+ReactDOM.render(<App />, document.getElementById('app'));
