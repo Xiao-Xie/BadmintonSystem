@@ -1,5 +1,11 @@
 USE newbee;
 
+DROP VIEW ActiveCourtsToday;
+CREATE VIEW ActiveCourtsToday AS
+SELECT DISTINCT court_id, name, capacity
+FROM ActiveCourts
+WHERE DATE(active_from) = CURDATE() 
+
 DROP VIEW InQueue;
 -- list of users who are waiting and not have a court
 -- We will grab users here when a court is ready to take new waiting users
@@ -33,6 +39,7 @@ and
 wait_end IS NULL
 and
 court_id IS NOT NULL
+ORDER BY wait_start
 ;
 
 -- list of users who are currently playing on a court
@@ -60,7 +67,9 @@ users.id NOT IN (
   select user_id 
   from players
   where DATE(check_in) = CURDATE()
-);
+)
+ORDER BY check_in
+;
 
 /*  Execute this file from the command line by typing:
   mysql -u root -p < db/views.sql
