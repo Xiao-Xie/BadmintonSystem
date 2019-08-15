@@ -118,7 +118,6 @@ module.exports = {
           });
         } else {
           db.query(setPlaying, (err, data) => {
-            console.log(setPlaying);
             if (err) {
               console.log(err);
               res.status(500).end();
