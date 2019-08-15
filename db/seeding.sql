@@ -9,6 +9,10 @@ INSERT INTO `Users` (`id`,`username`,`first_name`,`last_name`,`phone_number`,`em
 INSERT INTO `Users` (`id`,`username`,`first_name`,`last_name`,`phone_number`,`email`) VALUES (1071,"eu","Ethan","Tran","(530) 940-9309","dictum.eu.placerat@ipsum.ca"),(1072,"Cum","Deirdre","Shannon","(887) 576-7986","elit.Curabitur.sed@semPellentesqueut.com"),(1073,"est.","Whilemina","Travis","(375) 818-1497","Integer.id@venenatis.org"),(1074,"morbi","Vincent","Thomas","(204) 919-1177","vestibulum.Mauris.magna@Sed.co.uk"),(1075,"et,","Connor","Rios","(468) 480-1991","egestas.Duis.ac@Duisvolutpatnunc.co.uk"),(1076,"Proin","Myles","Price","(377) 211-6466","erat.volutpat@Quisquepurus.org"),(1077,"neque.","Robert","Cochran","(192) 920-0145","Praesent@habitantmorbi.co.uk"),(1078,"id,","Alexandra","Savage","(157) 701-5013","vel.quam@tristiquepharetraQuisque.co.uk"),(1079,"leo.","Aidan","Mcintyre","(517) 838-1814","ac.metus.vitae@ornare.org"),(1080,"laoreet","Renee","Price","(757) 328-0901","vel.lectus@facilisisegetipsum.com");
 INSERT INTO `Users` (`id`,`username`,`first_name`,`last_name`,`phone_number`,`email`) VALUES (1081,"magna.","Cain","Tyler","(881) 856-7962","bibendum.fermentum@ornarelectusjusto.co.uk"),(1082,"sit","Kendall","William","(677) 902-8692","Suspendisse@massaQuisque.com"),(1083,"Proin","Odysseus","Guerrero","(657) 570-9933","ac.libero@dapibusgravida.com"),(1084,"Maecenas","Macey","Soto","(402) 887-5529","enim.non.nisi@magna.net"),(1085,"sapien.","Constance","Haley","(679) 458-2781","enim@egestas.co.uk"),(1086,"tristique","Davis","Ramsey","(951) 142-3904","arcu.Vestibulum@Class.org"),(1087,"ultrices,","Reed","Vang","(229) 722-4832","dictum.eu@Maurisquis.org"),(1088,"sit","Deirdre","Bird","(669) 272-0343","nibh.lacinia@nequetellusimperdiet.edu"),(1089,"enim.","Cadman","Pacheco","(597) 774-7399","penatibus.et.magnis@et.org"),(1090,"mauris.","Hermione","Ramsey","(881) 988-8506","in.molestie.tortor@aliquam.co.uk");
 INSERT INTO `Users` (`id`,`username`,`first_name`,`last_name`,`phone_number`,`email`) VALUES (1091,"a,","Quyn","Matthews","(776) 725-7740","natoque.penatibus@consectetueradipiscingelit.com"),(1092,"felis","Jacob","Kirk","(489) 979-5372","lobortis.mauris@mauris.co.uk"),(1093,"dictum","Blythe","Roman","(296) 600-9978","vel.lectus.Cum@odio.org"),(1094,"Integer","Leilani","Prince","(712) 343-3008","semper.rutrum@euismodenimEtiam.org"),(1095,"sit","Jeanette","Burris","(453) 376-4928","dis.parturient@eutellus.co.uk"),(1096,"eleifend","Gabriel","Patterson","(847) 585-8131","eu@Infaucibus.net"),(1097,"lectus","Fritz","Eaton","(830) 196-9646","enim.Curabitur.massa@scelerisquesedsapien.net"),(1098,"dis","Tatyana","Willis","(464) 802-6104","tincidunt.tempus@duiCras.org"),(1099,"et","Kadeem","Bolton","(762) 153-2149","Maecenas.iaculis@dictumsapien.co.uk"),(1100,"Mauris","Lane","Franco","(735) 266-3788","Integer@dolor.ca");
+
+Insert INTO Players (user_id, display_name)
+SELECT id, username from Users;
+
 --Court Table
 INSERT INTO `Courts` (`id`,`name`) VALUES
  (1001,"Court 1"),
@@ -19,4 +23,6 @@ INSERT INTO `Courts` (`id`,`name`) VALUES
  (1006,"Court 6"),
  (1007,"Court 7");
 
+Insert INTO ActiveCourts (court_id, name)
+SELECT id, name from Courts;
 --  mysql -u root -p < db/seeding.sql

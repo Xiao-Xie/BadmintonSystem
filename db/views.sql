@@ -1,9 +1,11 @@
 USE newbee;
+
+DROP VIEW InQueue;
 -- list of users who are waiting and not have a court
 -- We will grab users here when a court is ready to take new waiting users
 CREATE VIEW InQueue AS
 SELECT *
-FROM WaitingList
+FROM Players
 WHERE 
 DATE(wait_start) = CURDATE()
 and
@@ -16,11 +18,13 @@ ORDER BY
 wait_start
 ;
 
+
 -- list of users who are waiting and have a court assigned
 -- We will display this next to the court
+DROP VIEW GetReady;
 CREATE VIEW GetReady AS
 SELECT *
-FROM WaitingList
+FROM Players
 WHERE 
 DATE(wait_start) = CURDATE()
 and
@@ -33,9 +37,10 @@ court_id IS NOT NULL
 
 -- list of users who are currently playing on a court
 -- We will grab users here when a court is ready to take new waiting users
+DROP VIEW Playing;
 CREATE VIEW Playing AS
 SELECT *
-FROM GameList
+FROM Players
 WHERE 
 DATE(game_start) = CURDATE()
 and
@@ -46,6 +51,7 @@ game_end IS NULL
 
 
 -- list of users who can check-in
+DROP VIEW CheckIn;
 CREATE VIEW CheckIn AS
 SELECT * 
 FROM users

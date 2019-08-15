@@ -23,6 +23,10 @@ CREATE TABLE Players (
   check_in DATETIME DEFAULT CURRENT_TIMESTAMP,
   notify_number INT,
   notify_email VARCHAR(255),
+  wait_start DATETIME DEFAULT CURRENT_TIMESTAMP,
+  wait_end DATETIME,
+  game_start DATETIME,
+  game_end DATETIME,
   PRIMARY KEY (id),
   FOREIGN KEY (user_id) REFERENCES Users(id)
 );
@@ -42,27 +46,27 @@ CREATE TABLE ActiveCourts(
     FOREIGN KEY (court_id) REFERENCES Courts(id)
 );
 
-CREATE TABLE WaitingList(
-  id INT NOT NULL AUTO_INCREMENT,
-  player_id INT NOT NULL,
-  court_id INT,
-  wait_start DATETIME DEFAULT CURRENT_TIMESTAMP,
-  wait_end DATETIME,
-  PRIMARY KEY (id),
-  FOREIGN KEY (court_id) REFERENCES Courts(id),
-  FOREIGN KEY (player_id) REFERENCES Players(id)
-);
+-- CREATE TABLE WaitingList(
+--   id INT NOT NULL AUTO_INCREMENT,
+--   player_id INT NOT NULL,
+--   court_id INT,
+--   wait_start DATETIME DEFAULT CURRENT_TIMESTAMP,
+--   wait_end DATETIME,
+--   PRIMARY KEY (id),
+--   FOREIGN KEY (court_id) REFERENCES Courts(id),
+--   FOREIGN KEY (player_id) REFERENCES Players(id)
+-- );
 
-CREATE TABLE GameList(
-  id INT NOT NULL AUTO_INCREMENT,
-  player_id INT NOT NULL,
-  court_id INT NOT NULL,
-  game_start DATETIME DEFAULT CURRENT_TIMESTAMP,
-  game_end DATETIME,
-  PRIMARY KEY (id),
-  FOREIGN KEY (court_id) REFERENCES Courts(id),
-  FOREIGN KEY (player_id) REFERENCES Players(id)
-)
+-- CREATE TABLE GameList(
+--   id INT NOT NULL AUTO_INCREMENT,
+--   player_id INT NOT NULL,
+--   court_id INT NOT NULL,
+--   game_start DATETIME DEFAULT CURRENT_TIMESTAMP,
+--   game_end DATETIME,
+--   PRIMARY KEY (id),
+--   FOREIGN KEY (court_id) REFERENCES Courts(id),
+--   FOREIGN KEY (player_id) REFERENCES Players(id)
+-- )
 
 
 
