@@ -5,7 +5,7 @@ const CourtList = ({ courts }) => {
   return (
     <div className="courtList">
       {courts.map(court => {
-        return <Court court={court} key={court.courtid} />;
+        return <Court court={court} key={court.court_id} />;
       })}
     </div>
   );

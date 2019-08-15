@@ -13,7 +13,7 @@ const connection = mysql.createConnection({
 
 connection.connect(function(err) {
   if (err) throw err;
-  console.log('Connected to msql!');
+  console.log('Connected to mysql!');
 });
 
 module.exports = connection;
