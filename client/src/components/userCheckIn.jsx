@@ -114,7 +114,7 @@ class UserCheckIn extends React.Component {
           players={this.state.checkIn}
           handleClick={this.handleClick}
         />
-        <CheckinForm user={this.state.selected} />
+        {/* <CheckinForm user={this.state.selected} /> */}
         <UserInQueue players={this.state.inQueue} />
         <MySnackbarContentWrapper
           message={this.state.info}

@@ -37,7 +37,7 @@ export default function UsersInQueue({ players }) {
 
   return (
     <Box>
-      <Typography varbriant="h5">Waiting List</Typography>
+      <Typography varbriant="h4">Waiting List</Typography>
 
       <Paper className={classes.root}>
         {players.map(data => {

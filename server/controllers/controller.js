@@ -152,13 +152,13 @@ module.exports = {
   },
 
   getQueue: (req, res) => {
-    let getQueue = `SELECT * FROM InQueue`;
+    let getQueue = `SELECT * FROM InQueue ORDER BY 
+    wait_start DESC`;
     db.query(getQueue, (err, data) => {
       if (err) {
         console.log(err);
         res.status(500).end();
       } else {
-        console.log(data);
         res.status(200).send(data);
       }
     });

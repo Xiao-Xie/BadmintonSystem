@@ -30,26 +30,19 @@ export default function SearchResults({ players, handleClick, info }) {
 
   return (
     <Box>
-      <Typography varbriant="h5">Search Results</Typography>
+      <Typography varbriant="h4">Search Results</Typography>
 
       <Typography>{info}</Typography>
 
       <Paper className={classes.root}>
         {players.map(data => {
-          let icon;
+          // let icon;
 
-          if (data.display_name === 'React') {
-            icon = <TagFacesIcon />;
-          }
+          // if (data.display_name === 'React') {
+          //   icon = <TagFacesIcon />;
+          // }
 
           return (
-            // <Chip
-            //   key={data.id}
-            //   icon={icon}
-            //   label={data.first_name + ' ' + data.last_name}
-            //   onDelete={handleDelete(data)}
-            //   className={classes.chip}
-            // />
             <Chip
               key={data.id}
               value={data.user_id}

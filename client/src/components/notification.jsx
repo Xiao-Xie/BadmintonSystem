@@ -105,48 +105,20 @@ export default function CustomizedSnackbars(props) {
   }
 
   return (
-    <div>
-      <Button
-        variant="outlined"
-        className={classes.margin}
-        onClick={handleClick}>
-        Open success snackbar
-      </Button>
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        open={props.open}
-        autoHideDuration={6000}
-        onClick={props.closeSnack}
-        onClose={props.closeSnack}>
-        <MySnackbarContentWrapper
-          onClose={handleClose}
-          variant={props.variant}
-          message={props.message}
-        />
-      </Snackbar>
+    <Snackbar
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'left',
+      }}
+      open={props.open}
+      autoHideDuration={6000}
+      onClick={props.closeSnack}
+      onClose={props.closeSnack}>
       <MySnackbarContentWrapper
-        variant="error"
-        className={classes.margin}
-        message="This is an error message!"
+        onClose={handleClose}
+        variant={props.variant}
+        message={props.message}
       />
-      <MySnackbarContentWrapper
-        variant="warning"
-        className={classes.margin}
-        message="This is a warning message!"
-      />
-      <MySnackbarContentWrapper
-        variant="info"
-        className={classes.margin}
-        message="This is an information message!"
-      />
-      <MySnackbarContentWrapper
-        variant="success"
-        className={classes.margin}
-        message="This is a success message!"
-      />
-    </div>
+    </Snackbar>
   );
 }
