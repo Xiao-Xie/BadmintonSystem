@@ -24,6 +24,8 @@ router.get('/getQueue', controller.getQueue);
 // //users not have checked in
 router.get('/getCheckin/:keyword', controller.getCheckIn);
 
+router.post('/checkIn/:user_id', controller.userCheckIn);
+
 // //users are playing on a court
 // router.get('/courts/:courtid/gamelist',controller.getGamelist);
 // //users are ready to start a game on a court

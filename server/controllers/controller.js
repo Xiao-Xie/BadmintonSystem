@@ -1,24 +1,22 @@
 const db = require('../model/model');
 
 module.exports = {
+  //insert user to waiting list
   userCheckIn: (req, res) => {
-    const params = req.params;
-    let insertQuery = `
-      INSERT INTO Players (user_id, display_name, notify_number, notify_email)
-      VALUES  (${params.user_id},${params.display_name},${
-      params.notify_number
-    },${params.notify_email} )
+    const user_id = req.params.user_id;
+
+    let checkIn = `
+    Insert INTO Players (user_id, display_name)
+    SELECT id, CONCAT(first_name, ' ', last_name) as username from Users WHERE Users.id=${user_id};
     `;
-    //console.log(insertQuery);
-    // db.query(insertQuery, (err, data) => {
-    //   if (err) {
-    //     console.log(err);
-    //     res.status(500).end();
-    //   } else {
-    //     console.log(data);
-    //     res.status(201).end;
-    //   }
-    // });
+    db.query(checkIn, (err, data) => {
+      if (err) {
+        console.log(err);
+        res.status(500).end();
+      } else {
+        res.status(201).send('user checked in!');
+      }
+    });
   },
 
   //get a list of active courts
