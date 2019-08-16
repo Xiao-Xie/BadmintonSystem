@@ -16,17 +16,19 @@ const createPlayers = `
 CREATE TABLE Players (
   id INT NOT NULL AUTO_INCREMENT,
   user_id INT,
+  court_id INT,
   display_name VARCHAR(255) NOT NULL,
-  check_in DATETIME DEFAULT CURRENT_TIMESTAMP,
+  check_in DATETIME NOT NULL,
   notify_number INT,
   notify_email VARCHAR(255),
-  wait_start DATETIME DEFAULT CURRENT_TIMESTAMP,
+  wait_start DATETIME NOT NULL,
   wait_end DATETIME,
   game_start DATETIME,
   game_end DATETIME,
   PRIMARY KEY (id),
-  FOREIGN KEY (user_id) REFERENCES Users(id)
-);
+  FOREIGN KEY (user_id) REFERENCES Users(id),
+  FOREIGN KEY (court_id) REFERENCES Courts(id)
+  );
 `;
 
 const createCourts = `
