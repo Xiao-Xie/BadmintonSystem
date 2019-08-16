@@ -133,12 +133,20 @@ class Court extends React.Component {
         <Grid item md={12}>
           <Typography variant="h5">{this.props.court.capacity}</Typography>
         </Grid>
-        <Grid item md={12}>
+        {this.state.getReady.length > 0 ? (
           <GetReady players={this.state.getReady} />
-        </Grid>
-        <Grid item className="playingCourt" md={12}>
+        ) : (
+          <></>
+        )}
+        {this.state.playing.length > 0 ? (
           <Playing players={this.state.playing} />
-        </Grid>
+        ) : (
+          <></>
+        )}
+        {/* <Grid item md={12} />
+        <Grid item className="playingCourt" md={12}>
+         
+        </Grid> */}
       </Grid>
     );
   }
