@@ -4,26 +4,16 @@ import CourtPreview from './courtPreview';
 import CourtDetails from './courtDetails';
 
 //Material UI Components
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 
 const CourtList = ({ courts }) => {
   return (
-    <div className="courtList">
-      <Grid
-        container
-        direction="row"
-        justify="space-around"
-        alignItems="flex-start">
-        {courts.map(court => {
-          return (
-            // <div>
-            //   <CourtPreview court={court} key={court.court_id} />
-            <CourtDetails court={court} key={court.court_id} />
-            // </div>
-          );
-        })}
-      </Grid>
-    </div>
+    <Grid item lg={8} sm={6} md={8}>
+      <Typography variant="h3">Court List</Typography>
+      {courts.map(court => {
+        return <CourtDetails court={court} key={court.court_id} />;
+      })}
+    </Grid>
   );
 };
 export default CourtList;

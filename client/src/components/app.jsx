@@ -1,7 +1,9 @@
 import React from 'react';
 import CourtList from './courtList';
+import UserCheckIn from './userCheckIn';
 import axios from 'axios';
 
+import { Grid } from '@material-ui/core';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -26,9 +28,14 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
+      <Grid
+        container
+        alignContent="flex-start"
+        justify="space-around"
+        spacing={5}>
+        <UserCheckIn />
         <CourtList courts={this.state.courtList} />
-      </div>
+      </Grid>
     );
   }
 }
