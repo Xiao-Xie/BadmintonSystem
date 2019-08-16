@@ -76,8 +76,8 @@ class Court extends React.Component {
   }
   render() {
     return (
-      <Grid container item md={3} alignItems="flex-start">
-        <Typography variant="h4">{this.props.court.name}</Typography>
+      <Grid container item alignItems="flex-start">
+        {/* <Typography variant="h4">{this.props.court.name}</Typography> */}
 
         <Grid item md={12}>
           {this.state.playing.length === 0 ? (
@@ -108,9 +108,9 @@ class Court extends React.Component {
             </>
           )}
         </Grid>
-        <Grid item md={12}>
+        {/* <Grid item md={12}>
           <Typography variant="h5">{this.props.court.capacity}</Typography>
-        </Grid>
+        </Grid> */}
         {this.state.getReady.length > 0 ? (
           <GetReady players={this.state.getReady} />
         ) : (

@@ -94,6 +94,7 @@ class Court extends React.Component {
         <Typography variant="h5">
           Court Capacity: {this.props.court.capacity}
         </Typography>
+
         <Typography variant="h5">
           Current Playing: {this.state.playing}
         </Typography>

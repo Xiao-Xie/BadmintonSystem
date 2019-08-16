@@ -1,6 +1,7 @@
 import React from 'react';
 
 import CourtPreview from './courtPreview';
+import CourtDetails from './courtDetails';
 
 //Material UI Components
 import { Grid } from '@material-ui/core';
@@ -14,7 +15,12 @@ const CourtList = ({ courts }) => {
         justify="space-around"
         alignItems="flex-start">
         {courts.map(court => {
-          return <CourtPreview court={court} key={court.court_id} />;
+          return (
+            // <div>
+            //   <CourtPreview court={court} key={court.court_id} />
+            <CourtDetails court={court} key={court.court_id} />
+            // </div>
+          );
         })}
       </Grid>
     </div>
