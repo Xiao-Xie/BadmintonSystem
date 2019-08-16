@@ -1,7 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Chip, Typography, Paper, Box } from '@material-ui/core';
+import { Chip, Typography, Paper, Box, Avatar } from '@material-ui/core';
 
+import FaceIcon from '@material-ui/icons/Face';
+import DoneIcon from '@material-ui/icons/Done';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
 
 const useStyles = makeStyles(theme => ({
@@ -16,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SearchResults({ players }) {
+export default function SearchResults({ players, handleClick }) {
   const classes = useStyles();
   const [chipData, setChipData] = React.useState([
     { key: 0, label: 'Angular' },
@@ -25,15 +27,6 @@ export default function SearchResults({ players }) {
     { key: 3, label: 'React' },
     { key: 4, label: 'Vue.js' },
   ]);
-
-  const handleDelete = chipToDelete => () => {
-    if (chipToDelete.label === 'React') {
-      alert('Why would you want to delete React?! :)');
-      return;
-    }
-
-    setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key));
-  };
 
   return (
     <Box>
@@ -48,12 +41,27 @@ export default function SearchResults({ players }) {
           }
 
           return (
+            // <Chip
+            //   key={data.id}
+            //   icon={icon}
+            //   label={data.first_name + ' ' + data.last_name}
+            //   onDelete={handleDelete(data)}
+            //   className={classes.chip}
+            // />
             <Chip
               key={data.id}
-              icon={icon}
+              value={data.user_id}
+              icon={<FaceIcon />}
               label={data.first_name + ' ' + data.last_name}
-              onDelete={handleDelete(data)}
+              clickable
               className={classes.chip}
+              color="primary"
+              deleteIcon={<DoneIcon />}
+              variant="outlined"
+              onClick={e => {
+                handleClick(data.id);
+              }}
+              onDelete={handleClick}
             />
           );
         })}

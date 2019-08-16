@@ -30,26 +30,42 @@ class UserCheckIn extends React.Component {
       keyword: '',
     };
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleClick = this.handleClick.bind(this);
 
     // this.getCourtInfo = this.getCourtInfo.bind(this);
     // this.startGame = this.startGame.bind(this);
     // this.endGame = this.endGame.bind(this);
   }
   componentDidMount() {
-    this.getUserCheckIn(this.state.keyword);
+    this.getUserCheckIn();
     this.getUserInQueue();
   }
 
+  handleClick(userID) {
+    alert(userID);
+    // axios
+    //   .post(`http://localhost:9000/checkIn/${userID}`)
+    //   .then(data => {
+    //     console.log(data);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+  }
   handleSearch(keyword) {
-    console.log(keyword);
-    this.getUserCheckIn(keyword);
+    this.setState({ keyword: keyword }, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        this.getUserCheckIn();
+      }
+    });
   }
   //users have already checked in
   getUserInQueue() {
     axios
       .get(`http://localhost:9000/getQueue`)
       .then(data => {
-        console.log(data);
         this.setState({
           inQueue: data.data,
         });
@@ -59,12 +75,11 @@ class UserCheckIn extends React.Component {
       });
   }
   //users can checkin
-  getUserCheckIn(keyword) {
-    if (keyword !== '') {
+  getUserCheckIn() {
+    if (this.state.keyword !== '') {
       axios
-        .get(`http://localhost:9000/getCheckin/${keyword}`)
+        .get(`http://localhost:9000/getCheckin/${this.state.keyword}`)
         .then(data => {
-          console.log(data);
           this.setState({
             checkIn: data.data,
           });
@@ -73,16 +88,17 @@ class UserCheckIn extends React.Component {
           console.log(err);
         });
     } else {
-      this.setState({
-        checkIn: [],
-      });
+      this.setState({ checkIn: [] });
     }
   }
   render() {
     return (
       <Grid item lg={4} sm={6} md={4}>
         <SearchUser handleSearch={this.handleSearch} />
-        <SearchResults players={this.state.checkIn} />
+        <SearchResults
+          players={this.state.checkIn}
+          handleClick={this.handleClick}
+        />
         <CheckinForm user={this.state.selected} />
         <UserInQueue players={this.state.inQueue} />
       </Grid>
