@@ -22,7 +22,7 @@ router.put('/courts/:courtid/end', controller.endGame);
 // //users not have any court assigned
 router.get('/getQueue', controller.getQueue);
 // //users not have checked in
-router.get('/getCheckin', controller.getCheckIn);
+router.get('/getCheckin/:keyword', controller.getCheckIn);
 
 // //users are playing on a court
 // router.get('/courts/:courtid/gamelist',controller.getGamelist);

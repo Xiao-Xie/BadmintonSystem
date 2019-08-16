@@ -167,7 +167,8 @@ module.exports = {
   },
 
   getCheckIn: (req, res) => {
-    let getCheckIn = `SELECT * FROM CheckIn`;
+    let keyword = req.params.keyword;
+    let getCheckIn = `SELECT * FROM CheckIn WHERE first_name like '%${keyword}%' OR last_name like '%${keyword}%'`;
     db.query(getCheckIn, (err, data) => {
       if (err) {
         console.log(err);

@@ -31,7 +31,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SearchUser() {
+export default function SearchUser(props) {
   const classes = useStyles();
 
   return (
@@ -43,7 +43,11 @@ export default function SearchUser() {
         className={classes.input}
         placeholder="Search Players"
         inputProps={{ 'aria-label': 'search players' }}
+        onChange={event => {
+          props.handleSearch(event.target.value);
+        }}
       />
+
       <IconButton className={classes.iconButton} aria-label="search">
         <SearchIcon />
       </IconButton>

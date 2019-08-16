@@ -29,16 +29,20 @@ class UserCheckIn extends React.Component {
       checkIn: [],
       keyword: '',
     };
+    this.handleSearch = this.handleSearch.bind(this);
+
     // this.getCourtInfo = this.getCourtInfo.bind(this);
     // this.startGame = this.startGame.bind(this);
     // this.endGame = this.endGame.bind(this);
   }
   componentDidMount() {
-    this.getUserCheckIn();
+    this.getUserCheckIn(this.state.keyword);
     this.getUserInQueue();
   }
-  handleSeach(keyword) {
-    getUserCheckIn(keyword);
+
+  handleSearch(keyword) {
+    console.log(keyword);
+    this.getUserCheckIn(keyword);
   }
   //users have already checked in
   getUserInQueue() {
@@ -51,27 +55,33 @@ class UserCheckIn extends React.Component {
         });
       })
       .catch(err => {
-        console.err(err);
+        console.log(err);
       });
   }
   //users can checkin
   getUserCheckIn(keyword) {
-    axios
-      .get(`http://localhost:9000/getCheckin/${this.state.keyword}`)
-      .then(data => {
-        console.log(data);
-        this.setState({
-          checkIn: data.data,
+    if (keyword !== '') {
+      axios
+        .get(`http://localhost:9000/getCheckin/${keyword}`)
+        .then(data => {
+          console.log(data);
+          this.setState({
+            checkIn: data.data,
+          });
+        })
+        .catch(err => {
+          console.log(err);
         });
-      })
-      .catch(err => {
-        console.err(err);
+    } else {
+      this.setState({
+        checkIn: [],
       });
+    }
   }
   render() {
     return (
       <Grid item lg={4} sm={6} md={4}>
-        <SearchUser />
+        <SearchUser handleSearch={this.handleSearch} />
         <SearchResults players={this.state.checkIn} />
         <CheckinForm user={this.state.selected} />
         <UserInQueue players={this.state.inQueue} />
