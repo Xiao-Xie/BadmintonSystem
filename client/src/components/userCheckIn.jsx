@@ -10,6 +10,7 @@ import UserInQueue from './inQueue';
 import CheckinForm from './checkinForm';
 import SearchUser from './searchUsers';
 import SearchResults from './searchResults';
+import MySnackbarContentWrapper from './notification';
 
 //Material UI Components
 import {
@@ -28,9 +29,13 @@ class UserCheckIn extends React.Component {
       inQueue: [],
       checkIn: [],
       keyword: '',
+      info: '',
+      variant: 'success',
+      open: false,
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.closeSnack = this.closeSnack.bind(this);
 
     // this.getCourtInfo = this.getCourtInfo.bind(this);
     // this.startGame = this.startGame.bind(this);
@@ -41,16 +46,25 @@ class UserCheckIn extends React.Component {
     this.getUserInQueue();
   }
 
-  handleClick(userID) {
-    alert(userID);
-    // axios
-    //   .post(`http://localhost:9000/checkIn/${userID}`)
-    //   .then(data => {
-    //     console.log(data);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+  closeSnack() {
+    this.setState({ open: false });
+  }
+  handleClick(user_id, user_name) {
+    alert(user_id);
+    axios
+      .post(`http://localhost:9000/checkIn/${user_id}`)
+      .then(data => {
+        console.log(data);
+        this.setState({
+          info: `Player ${user_name} has been added to waiting list!`,
+          open: true,
+        });
+        this.getUserCheckIn();
+        this.getUserInQueue();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
   handleSearch(keyword) {
     this.setState({ keyword: keyword }, (err, result) => {
@@ -96,11 +110,18 @@ class UserCheckIn extends React.Component {
       <Grid item lg={4} sm={6} md={4}>
         <SearchUser handleSearch={this.handleSearch} />
         <SearchResults
+          info={this.state.info}
           players={this.state.checkIn}
           handleClick={this.handleClick}
         />
         <CheckinForm user={this.state.selected} />
         <UserInQueue players={this.state.inQueue} />
+        <MySnackbarContentWrapper
+          message={this.state.info}
+          variant={this.state.variant}
+          open={this.state.open}
+          closeSnack={this.closeSnack}
+        />
       </Grid>
     );
   }

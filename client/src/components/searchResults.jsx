@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SearchResults({ players, handleClick }) {
+export default function SearchResults({ players, handleClick, info }) {
   const classes = useStyles();
   const [chipData, setChipData] = React.useState([
     { key: 0, label: 'Angular' },
@@ -31,6 +31,8 @@ export default function SearchResults({ players, handleClick }) {
   return (
     <Box>
       <Typography varbriant="h5">Search Results</Typography>
+
+      <Typography>{info}</Typography>
 
       <Paper className={classes.root}>
         {players.map(data => {
@@ -59,7 +61,7 @@ export default function SearchResults({ players, handleClick }) {
               deleteIcon={<DoneIcon />}
               variant="outlined"
               onClick={e => {
-                handleClick(data.id);
+                handleClick(data.id, data.first_name);
               }}
               onDelete={handleClick}
             />
