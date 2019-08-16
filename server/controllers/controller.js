@@ -9,7 +9,7 @@ module.exports = {
       params.notify_number
     },${params.notify_email} )
     `;
-    console.log(insertQuery);
+    //console.log(insertQuery);
     // db.query(insertQuery, (err, data) => {
     //   if (err) {
     //     console.log(err);
@@ -36,7 +36,6 @@ module.exports = {
 
   //get detail of one court
   getCourtInfo: (req, res) => {
-    console.log(req.params.courtid);
     let courtid = req.params.courtid;
     let result = {
       getReady: [],

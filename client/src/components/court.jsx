@@ -5,9 +5,9 @@ import { now } from 'moment';
 class Court extends React.Component {
   constructor(props) {
     super(props);
-    this.stats = {
-      getReady: ["there's no player waiting"],
-      playing: ["there's not player playing"],
+    this.state = {
+      getReady: [],
+      playing: [],
       game_start: '',
     };
     this.getCourtInfo = this.getCourtInfo.bind(this);
@@ -19,8 +19,13 @@ class Court extends React.Component {
     axios
       .get(`http://localhost:9000/courts/${this.props.court.court_id}`)
       .then(data => {
-        console.log(data);
-        this.setState(data.data);
+        if (data.data.playing.length > 0) {
+          this.setState({ playing: data.data.playing });
+        }
+        if (data.data.getReady.length > 0) {
+          this.setState({ getReady: data.data.getReady });
+        }
+        //this.setState(data.data);
       })
       .catch(err => {
         console.log(err);
@@ -28,9 +33,8 @@ class Court extends React.Component {
   }
   startGame() {
     axios
-      .get(`http://localhost:9000/courts/${this.props.court.court_id}/start`)
+      .put(`http://localhost:9000/courts/${this.props.court.court_id}/start`)
       .then(data => {
-        console.log(data);
         this.getCourtInfo();
       })
       .catch(err => {
@@ -39,7 +43,7 @@ class Court extends React.Component {
   }
   endGame() {
     axios
-      .get(`http://localhost:9000/courts/${this.props.court.court_id}/end`)
+      .put(`http://localhost:9000/courts/${this.props.court.court_id}/end`)
       .then(data => {
         console.log(data);
         this.getCourtInfo();
@@ -51,23 +55,47 @@ class Court extends React.Component {
   render() {
     return (
       <div className="courtContainer">
-        court
-        {/* <div className="playingCourt">
-          {court.playing.map((player, i) => {
+        {this.state.playing.length === 0 ? (
+          <button
+            className="startGame"
+            onClick={() => {
+              this.startGame();
+            }}>
+            Start Game
+          </button>
+        ) : (
+          <button
+            className="endGame"
+            onClick={() => {
+              this.endGame();
+            }}>
+            End Game
+          </button>
+        )}
+
+        {this.props.court.name}
+        {this.props.court.capacity}
+
+        <div className="playingCourt">
+          {this.state.playing.map((player, i) => {
             return (
               <div className="player" key={i}>
-                {player}
+                {player.display_name}
               </div>
             );
           })}
         </div>
         <div className="getReady">
-          <div className="nextGame">Next game starts in {court.game_start}</div>
+          <div className="nextGame">Next game starts in </div>
           <div className="getReadyTitle">Get Ready</div>
-          {court.getReady.map((player, i) => {
-            return <div key={i}>{player}</div>;
+          {this.state.getReady.map((player, i) => {
+            return (
+              <div className="player" key={i}>
+                {player.display_name}
+              </div>
+            );
           })}
-        </div> */}
+        </div>
       </div>
     );
   }
