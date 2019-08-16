@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const controller = require('./controllers/controller');
+const seeding = require('../db/seedDB');
 
 //Route different requests to different endpoints
 
@@ -25,6 +26,17 @@ router.get('/getQueue', controller.getQueue);
 router.get('/getCheckin/:keyword', controller.getCheckIn);
 
 router.post('/checkIn/:user_id', controller.userCheckIn);
+
+router.get('/seed/user', seeding.user);
+router.get('/seed/player', seeding.player);
+router.get('/seed/court', seeding.court);
+router.get('/seed/activecourt', seeding.activecourt);
+
+router.get('/view/active', seeding.ActiveCourtsToday);
+router.get('/view/viewinqueue', seeding.viewinqueue);
+router.get('/view/viewready', seeding.viewready);
+router.get('/view/viewPlaying', seeding.viewPlaying);
+router.get('/view/viewcheckin', seeding.viewcheckin);
 
 // //users are playing on a court
 // router.get('/courts/:courtid/gamelist',controller.getGamelist);
