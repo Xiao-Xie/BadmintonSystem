@@ -36,28 +36,30 @@ export default function UsersInQueue({ players }) {
   };
 
   return (
-    <Box>
-      <Typography varbriant="h4">Waiting List</Typography>
+    <div className="">
+      <Typography variant="h4">Waiting List</Typography>
 
       <Paper className={classes.root}>
-        {players.map(data => {
-          let icon;
+        <div className="waiting">
+          {players.map(data => {
+            let icon;
 
-          if (data.display_name === 'React') {
-            icon = <TagFacesIcon />;
-          }
+            if (data.display_name === 'React') {
+              icon = <TagFacesIcon />;
+            }
 
-          return (
-            <Chip
-              key={data.user_id}
-              icon={icon}
-              label={data.display_name}
-              onDelete={handleDelete(data)}
-              className={classes.chip}
-            />
-          );
-        })}
+            return (
+              <Chip
+                key={data.user_id}
+                icon={icon}
+                label={data.display_name}
+                onDelete={handleDelete(data)}
+                className={classes.chip}
+              />
+            );
+          })}
+        </div>
       </Paper>
-    </Box>
+    </div>
   );
 }

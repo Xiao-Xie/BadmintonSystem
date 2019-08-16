@@ -16,3 +16,7 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+.waiting {
+  max-height: 300px;
+  overflow: scroll;
+}
