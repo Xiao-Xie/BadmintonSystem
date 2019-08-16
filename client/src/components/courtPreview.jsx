@@ -5,6 +5,9 @@ import ConfirmEndGame from './confirmEndGame';
 import GameCountDown from './gameCountDown';
 import GetReady from './getReady';
 import Playing from './playing';
+import moment from 'moment';
+
+import { Route, Link } from 'react-router';
 
 //Material UI Components
 import {
@@ -20,8 +23,8 @@ class Court extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      getReady: [],
-      playing: [],
+      getReady: 0,
+      playing: 0,
       game_start: '',
       init: true,
     };
@@ -36,10 +39,14 @@ class Court extends React.Component {
     axios
       .get(`http://localhost:9000/courts/${this.props.court.court_id}`)
       .then(data => {
+        // if (data.data.playing.length > 0) {
         this.setState({
-          playing: data.data.playing,
+          playing: data.data.playing.length,
         });
-        this.setState({ getReady: data.data.getReady });
+        // }
+        // if (data.data.getReady.length > 0) {
+        this.setState({ getReady: data.data.getReady.length });
+        // }
         if (data.data.playing.length > 0) {
           this.setState({
             game_start: Date.parse(data.data.playing[0].game_start),
@@ -49,6 +56,7 @@ class Court extends React.Component {
             game_start: '',
           });
         }
+        //this.setState(data.data);
       })
       .catch(err => {
         console.log(err);
@@ -68,6 +76,7 @@ class Court extends React.Component {
     axios
       .put(`http://localhost:9000/courts/${this.props.court.court_id}/end`)
       .then(data => {
+        console.log(data);
         this.getCourtInfo();
       })
       .catch(err => {
@@ -76,11 +85,24 @@ class Court extends React.Component {
   }
   render() {
     return (
-      <Grid container item md={3} alignItems="flex-start">
+      <Grid container item alignItems="flex-start">
+        {/* <Route path={`court/:id`} component={Court}  render={props => <Court {...props} extra={someVariable} />}/> */}
+
+        {/* <Link to={`court/${this.props.court.court_id}`}> */}
         <Typography variant="h4">{this.props.court.name}</Typography>
+        {/* </Link> */}
+        <Typography variant="h5">
+          Court Capacity: {this.props.court.capacity}
+        </Typography>
+        <Typography variant="h5">
+          Current Playing: {this.state.playing}
+        </Typography>
+        <Typography variant="h5">
+          Waiting List: {this.state.getReady}
+        </Typography>
 
         <Grid item md={12}>
-          {this.state.playing.length === 0 ? (
+          {this.state.playing === 0 ? (
             <Button
               className="startGame"
               variant="outlined"
@@ -92,35 +114,12 @@ class Court extends React.Component {
             </Button>
           ) : (
             <>
-              <ConfirmEndGame
-                endGame={this.endGame}
-                timeLeft={this.state.game_start + 1000 * 60 * 30}
-              />
               <Typography variant="h6" className="nextGame">
-                Next game starts in
-                <Countdown
-                  date={this.state.game_start + 1000 * 60 * 30}
-                  onComplete={() => {
-                    this.endGame();
-                  }}
-                />
+                Game Started On: {moment(this.state.game_start).format('LT')}
               </Typography>
             </>
           )}
         </Grid>
-        <Grid item md={12}>
-          <Typography variant="h5">{this.props.court.capacity}</Typography>
-        </Grid>
-        {this.state.getReady.length > 0 ? (
-          <GetReady players={this.state.getReady} />
-        ) : (
-          <></>
-        )}
-        {this.state.playing.length > 0 ? (
-          <Playing players={this.state.playing} />
-        ) : (
-          <></>
-        )}
       </Grid>
     );
   }
