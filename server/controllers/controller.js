@@ -153,7 +153,31 @@ module.exports = {
     });
   },
 
-  // getQueue: (req, res) => {},
+  getQueue: (req, res) => {
+    let getQueue = `SELECT * FROM InQueue`;
+    db.query(getQueue, (err, data) => {
+      if (err) {
+        console.log(err);
+        res.status(500).end();
+      } else {
+        console.log(data);
+        res.status(200).send(data);
+      }
+    });
+  },
+
+  getCheckIn: (req, res) => {
+    let getCheckIn = `SELECT * FROM CheckIn`;
+    db.query(getCheckIn, (err, data) => {
+      if (err) {
+        console.log(err);
+        res.status(500).end();
+      } else {
+        console.log(data);
+        res.status(200).send(data);
+      }
+    });
+  },
   // //get waiting list by court id
   // getWaitingList: (req, res) => {},
   // //get game list by court id

@@ -65,10 +65,18 @@ FROM users
 WHERE
 users.id NOT IN (
   select user_id 
-  from players
-  where DATE(check_in) = CURDATE()
+  from InQueue
 )
-ORDER BY check_in
+and
+users.id NOT IN (
+  select user_id 
+  from Playing
+)
+and
+users.id NOT IN (
+  select user_id 
+  from GetReady
+)
 ;
 
 /*  Execute this file from the command line by typing:
