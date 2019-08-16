@@ -76,7 +76,7 @@ class Court extends React.Component {
   }
   render() {
     return (
-      <Grid container item alignItems="flex-start">
+      <Grid container item alignItems="flex-start" justify="flex-start">
         {/* <Typography variant="h4">{this.props.court.name}</Typography> */}
 
         <Grid item md={12}>

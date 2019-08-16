@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import Typography from '@material-ui/core/Typography';
+import { Typography, Grid } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles(theme => ({
@@ -47,11 +47,24 @@ export default function CourtDetails({ court }) {
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Typography>
+          {/* <Typography>
             Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
             Aliquam eget maximus est, id dignissim quam.
-          </Typography>
-          <Court court={court} />
+          </Typography> */}
+          <Grid container>
+            <Grid item lg={3} md={4} sm={5}>
+              <div
+                className={`court_bg`}
+                id={`court-${court.court_id}`}
+                style={{
+                  backgroundImage: `url(./assets/${court.court_id}.jpeg)`,
+                }}
+              />
+            </Grid>
+            <Grid item lg={9} md={8} sm={7}>
+              <Court court={court} />
+            </Grid>
+          </Grid>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
