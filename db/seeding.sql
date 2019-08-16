@@ -11,7 +11,7 @@ INSERT INTO `Users` (`id`,`username`,`first_name`,`last_name`,`phone_number`,`em
 INSERT INTO `Users` (`id`,`username`,`first_name`,`last_name`,`phone_number`,`email`) VALUES (1091,"a,","Quyn","Matthews","(776) 725-7740","natoque.penatibus@consectetueradipiscingelit.com"),(1092,"felis","Jacob","Kirk","(489) 979-5372","lobortis.mauris@mauris.co.uk"),(1093,"dictum","Blythe","Roman","(296) 600-9978","vel.lectus.Cum@odio.org"),(1094,"Integer","Leilani","Prince","(712) 343-3008","semper.rutrum@euismodenimEtiam.org"),(1095,"sit","Jeanette","Burris","(453) 376-4928","dis.parturient@eutellus.co.uk"),(1096,"eleifend","Gabriel","Patterson","(847) 585-8131","eu@Infaucibus.net"),(1097,"lectus","Fritz","Eaton","(830) 196-9646","enim.Curabitur.massa@scelerisquesedsapien.net"),(1098,"dis","Tatyana","Willis","(464) 802-6104","tincidunt.tempus@duiCras.org"),(1099,"et","Kadeem","Bolton","(762) 153-2149","Maecenas.iaculis@dictumsapien.co.uk"),(1100,"Mauris","Lane","Franco","(735) 266-3788","Integer@dolor.ca");
 
 Insert INTO Players (user_id, display_name)
-SELECT id, username from Users;
+SELECT id, CONCAT(first_name, ' ', last_name) as username from Users;
 
 --Court Table
 INSERT INTO `Courts` (`id`,`name`) VALUES
