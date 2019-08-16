@@ -1,11 +1,5 @@
-import react from 'react';
-
-import FormControl from '@material-ui/core/FormControl';
-
 import React from 'react';
-import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({

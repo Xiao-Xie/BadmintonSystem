@@ -102,6 +102,9 @@ class Court extends React.Component {
                   date={this.state.game_start + 1000 * 60 * 30}
                   onComplete={() => {
                     this.endGame();
+                    if (this.getReady.length === this.props.court.capacity) {
+                      this.startGame();
+                    }
                   }}
                 />
               </Typography>

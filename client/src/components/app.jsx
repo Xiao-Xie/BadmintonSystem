@@ -1,6 +1,6 @@
 import React from 'react';
-import CourtList from './courtList';
-import UserCheckIn from './userCheckIn';
+import CourtList from './CourtMgmt/courtList';
+import UserCheckIn from './PlayerMgmt/userCheckIn';
 import axios from 'axios';
 
 import { Grid } from '@material-ui/core';

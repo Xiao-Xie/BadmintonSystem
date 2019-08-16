@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import Countdown from 'react-countdown-now';
-import ConfirmEndGame from './confirmEndGame';
-import GameCountDown from './gameCountDown';
-import GetReady from './getReady';
-import Playing from './playing';
+import ConfirmEndGame from '../CourtMgmt/confirmEndGame';
+import GameCountDown from '../CourtMgmt/gameCountDown';
+import GetReady from '../CourtMgmt/getReady';
+import Playing from '../CourtMgmt/playing';
 
 import UserInQueue from './inQueue';
 import CheckinForm from './checkinForm';
