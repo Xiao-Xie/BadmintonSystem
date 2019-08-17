@@ -12,10 +12,8 @@ import SearchUser from './searchUsers';
 import SearchResults from './searchResults';
 import MySnackbarContentWrapper from './notification';
 
-const DATA_URL =
-  process.env.DATA_URL || 'https://new-bee-sports.herokuapp.com/';
-console.log(DATA_URL);
-//Material UI Components
+import DATA_URL from '../../env';
+
 import {
   Grid,
   Button,

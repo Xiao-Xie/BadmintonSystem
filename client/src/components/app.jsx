@@ -2,8 +2,7 @@ import React from 'react';
 import CourtList from './CourtMgmt/courtList';
 import UserCheckIn from './PlayerMgmt/userCheckIn';
 import axios from 'axios';
-const DATA_URL =
-  process.env.DATA_URL || 'https://new-bee-sports.herokuapp.com/';
+import DATA_URL from '../env';
 
 import { Grid } from '@material-ui/core';
 class App extends React.Component {

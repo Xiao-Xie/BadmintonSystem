@@ -8,8 +8,7 @@ import Playing from './playing';
 import moment from 'moment';
 
 import { Route, Link } from 'react-router';
-const DATA_URL =
-  process.env.DATA_URL || 'https://new-bee-sports.herokuapp.com/';
+import DATA_URL from '../../env';
 
 //Material UI Components
 import {

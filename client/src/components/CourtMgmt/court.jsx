@@ -5,8 +5,7 @@ import ConfirmEndGame from './confirmEndGame';
 import GameCountDown from './gameCountDown';
 import GetReady from './getReady';
 import Playing from './playing';
-const DATA_URL =
-  process.env.DATA_URL || 'https://new-bee-sports.herokuapp.com/';
+import DATA_URL from '../../env';
 
 //Material UI Components
 import {
