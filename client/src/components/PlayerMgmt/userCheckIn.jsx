@@ -12,7 +12,7 @@ import SearchUser from './searchUsers';
 import SearchResults from './searchResults';
 import MySnackbarContentWrapper from './notification';
 
-import DATA_URL from '../../datapoint';
+import { datapoint } from '../../../../config';
 
 import {
   Grid,
@@ -51,7 +51,7 @@ class UserCheckIn extends React.Component {
     this.setState({ open: false });
   }
   handleClick(user_id, user_name) {
-    const url = `${DATA_URL}checkIn/${user_id}`;
+    const url = `${datapoint}checkIn/${user_id}`;
     console.log(url);
     axios
       .post(url)
@@ -78,7 +78,7 @@ class UserCheckIn extends React.Component {
   }
   //users have already checked in//
   getUserInQueue() {
-    const url = `${DATA_URL}getQueue`;
+    const url = `${datapoint}getQueue`;
     console.log(url);
     axios
       .get(url)
@@ -93,7 +93,7 @@ class UserCheckIn extends React.Component {
   }
   //users can checkin
   getUserCheckIn() {
-    const url = `${DATA_URL}getCheckin/${this.state.keyword}`;
+    const url = `${datapoint}getCheckin/${this.state.keyword}`;
     console.log(url);
     if (this.state.keyword !== '') {
       axios

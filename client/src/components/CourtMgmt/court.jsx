@@ -5,7 +5,7 @@ import ConfirmEndGame from './confirmEndGame';
 import GameCountDown from './gameCountDown';
 import GetReady from './getReady';
 import Playing from './playing';
-import DATA_URL from '../../datapoint';
+import { datapoint } from '../../../../config';
 
 //Material UI Components
 import {
@@ -35,7 +35,7 @@ class Court extends React.Component {
   }
   getCourtInfo() {
     axios
-      .get(`${DATA_URL}courts/${this.props.court.court_id}`)
+      .get(`${datapoint}courts/${this.props.court.court_id}`)
       .then(data => {
         this.setState({
           playing: data.data.playing,
@@ -57,7 +57,7 @@ class Court extends React.Component {
   }
   startGame() {
     axios
-      .put(`${DATA_URL}courts/${this.props.court.court_id}/start`)
+      .put(`${datapoint}courts/${this.props.court.court_id}/start`)
       .then(data => {
         this.getCourtInfo();
       })
@@ -67,7 +67,7 @@ class Court extends React.Component {
   }
   endGame() {
     axios
-      .put(`${DATA_URL}courts/${this.props.court.court_id}/end`)
+      .put(`${datapoint}courts/${this.props.court.court_id}/end`)
       .then(data => {
         this.getCourtInfo();
       })
