@@ -2,7 +2,7 @@ import React from 'react';
 import CourtList from './CourtMgmt/courtList';
 import UserCheckIn from './PlayerMgmt/userCheckIn';
 import axios from 'axios';
-import { datapoint } from '../../../config';
+import { datapoint } from '../../../connection_config';
 
 import { Grid } from '@material-ui/core';
 class App extends React.Component {

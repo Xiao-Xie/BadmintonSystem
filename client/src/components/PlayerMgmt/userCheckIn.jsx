@@ -12,7 +12,7 @@ import SearchUser from './searchUsers';
 import SearchResults from './searchResults';
 import MySnackbarContentWrapper from './notification';
 
-import { datapoint } from '../../../../config';
+import { datapoint } from '../../../../connection_config';
 
 import {
   Grid,

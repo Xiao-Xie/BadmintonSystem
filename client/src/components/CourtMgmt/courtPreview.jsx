@@ -8,7 +8,7 @@ import Playing from './playing';
 import moment from 'moment';
 
 import { Route, Link } from 'react-router';
-import { datapoint } from '../../../../config';
+import { datapoint } from '../../../../connection_config';
 
 //Material UI Components
 import {

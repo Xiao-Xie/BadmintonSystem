@@ -5,7 +5,7 @@ import ConfirmEndGame from './confirmEndGame';
 import GameCountDown from './gameCountDown';
 import GetReady from './getReady';
 import Playing from './playing';
-import { datapoint } from '../../../../config';
+import { datapoint } from '../../../../connection_config';
 
 //Material UI Components
 import {
