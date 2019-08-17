@@ -4,10 +4,9 @@ module.exports = {
   //insert user to waiting list
   userCheckIn: (req, res) => {
     const user_id = req.params.user_id;
-
     let checkIn = `
-    Insert INTO Players (user_id, display_name)
-    SELECT id, CONCAT(first_name, ' ', last_name) as username from Users WHERE Users.id=${user_id};
+    Insert INTO Players (user_id, display_name, wait_start)
+    SELECT id, CONCAT(first_name, ' ', last_name) as username, now() as wait_start from Users WHERE Users.id=${user_id};
     `;
     db.query(checkIn, (err, data) => {
       if (err) {
@@ -172,7 +171,7 @@ module.exports = {
         console.log(err);
         res.status(500).end();
       } else {
-        console.log(data);
+        //console.log(data);
         res.status(200).send(data);
       }
     });

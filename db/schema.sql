@@ -16,29 +16,32 @@ CREATE TABLE Users (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE Players (
-  id INT NOT NULL AUTO_INCREMENT,
-  user_id INT,
-  display_name VARCHAR(255) NOT NULL,
-  check_in DATETIME DEFAULT CURRENT_TIMESTAMP,
-  notify_number INT,
-  notify_email VARCHAR(255),
-  wait_start DATETIME DEFAULT CURRENT_TIMESTAMP,
-  wait_end DATETIME,
-  game_start DATETIME,
-  game_end DATETIME,
-  PRIMARY KEY (id),
-  FOREIGN KEY (user_id) REFERENCES Users(id)
-);
-
 CREATE TABLE Courts(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
 
+CREATE TABLE Players (
+  id INT NOT NULL AUTO_INCREMENT,
+  user_id INT,
+  court_id INT,
+  display_name VARCHAR(255) NOT NULL,
+  notify_number INT,
+  notify_email VARCHAR(255),
+  wait_start DATETIME NOT NULL,
+  wait_end DATETIME,
+  game_start DATETIME,
+  game_end DATETIME,
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id) REFERENCES Users(id)
+  FOREIGN KEY (court_id) REFERENCES Courts(id)
+);
+
 CREATE TABLE ActiveCourts(
     id INT NOT NULL AUTO_INCREMENT,
+    active_from DATETIME NOT NULL,
+    active_to DATETIME,
     court_id INT NOT NULL,
     capacity INT DEFAULT 4,
     name VARCHAR(255) NOT NULL,

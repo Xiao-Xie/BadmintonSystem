@@ -51,6 +51,7 @@ class UserCheckIn extends React.Component {
   closeSnack() {
     this.setState({ open: false });
   }
+  //Add selected user to waiting list
   handleClick(user_id, user_name) {
     const url = `${datapoint}/checkIn/${user_id}`;
     axios
