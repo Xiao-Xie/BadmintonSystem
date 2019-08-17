@@ -5,7 +5,7 @@ import ConfirmEndGame from './confirmEndGame';
 import GameCountDown from './gameCountDown';
 import GetReady from './getReady';
 import Playing from './playing';
-import DATA_URL from '../../env';
+import DATA_URL from '../../datapoint';
 
 //Material UI Components
 import {
