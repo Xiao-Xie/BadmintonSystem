@@ -51,7 +51,6 @@ class UserCheckIn extends React.Component {
     this.setState({ open: false });
   }
   handleClick(user_id, user_name) {
-    alert(user_id);
     axios
       .post(`${DATA_URL}/checkIn/${user_id}`)
       .then(data => {
