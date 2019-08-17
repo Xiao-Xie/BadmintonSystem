@@ -2,6 +2,7 @@ import React from 'react';
 import CourtList from './CourtMgmt/courtList';
 import UserCheckIn from './PlayerMgmt/userCheckIn';
 import axios from 'axios';
+import { DATA_API } from '../../../config';
 
 import { Grid } from '@material-ui/core';
 class App extends React.Component {
@@ -16,7 +17,7 @@ class App extends React.Component {
   }
   getActiveCourts() {
     axios
-      .get('http://localhost:9000/courtlist')
+      .get(`${DATA_API}/courtlist`)
       .then(data => {
         this.setState({
           courtList: data.data,

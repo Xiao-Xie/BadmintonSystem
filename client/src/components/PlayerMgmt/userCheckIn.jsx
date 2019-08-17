@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { DATA_URL } from '../../../../config';
 import Countdown from 'react-countdown-now';
 import ConfirmEndGame from '../CourtMgmt/confirmEndGame';
 import GameCountDown from '../CourtMgmt/gameCountDown';
@@ -52,7 +53,7 @@ class UserCheckIn extends React.Component {
   handleClick(user_id, user_name) {
     alert(user_id);
     axios
-      .post(`http://localhost:9000/checkIn/${user_id}`)
+      .post(`${DATA_URL}/checkIn/${user_id}`)
       .then(data => {
         console.log(data);
         this.setState({
@@ -78,7 +79,7 @@ class UserCheckIn extends React.Component {
   //users have already checked in
   getUserInQueue() {
     axios
-      .get(`http://localhost:9000/getQueue`)
+      .get(`${DATA_URL}/getQueue`)
       .then(data => {
         this.setState({
           inQueue: data.data,
@@ -92,7 +93,7 @@ class UserCheckIn extends React.Component {
   getUserCheckIn() {
     if (this.state.keyword !== '') {
       axios
-        .get(`http://localhost:9000/getCheckin/${this.state.keyword}`)
+        .get(`${DATA_URL}/getCheckin/${this.state.keyword}`)
         .then(data => {
           this.setState({
             checkIn: data.data,
