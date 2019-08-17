@@ -55,7 +55,6 @@ class UserCheckIn extends React.Component {
     axios
       .post(`${DATA_URL}/checkIn/${user_id}`)
       .then(data => {
-        console.log(data);
         this.setState({
           info: `Player ${user_name} has been added to waiting list!`,
           open: true,
