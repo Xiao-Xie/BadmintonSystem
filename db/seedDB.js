@@ -84,11 +84,6 @@ module.exports = {
   },
 
   activecourt: (req, res) => {
-    // db.query('DROP TABLE ActiveCourts', (err, results) => {
-    //   if (err) {
-    //     console.log(err);
-    //     res.status(500).end();
-    //   } else {
     db.query(createActiveCourts, (err, results) => {
       if (err) {
         console.log(err);
@@ -97,8 +92,6 @@ module.exports = {
         res.send('createActiveCourts');
       }
     });
-    // }
-    // });
   },
 
   ActiveCourtsToday: (req, res) => {
