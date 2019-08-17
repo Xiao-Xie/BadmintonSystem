@@ -17,7 +17,7 @@ class App extends React.Component {
   }
   getActiveCourts() {
     axios
-      .get(`${DATA_URL}/courtlist`)
+      .get(`${DATA_URL}courtlist`)
       .then(data => {
         this.setState({
           courtList: data.data,

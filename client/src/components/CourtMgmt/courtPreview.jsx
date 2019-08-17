@@ -37,7 +37,7 @@ class Court extends React.Component {
   }
   getCourtInfo() {
     axios
-      .get(`${DATA_URL}/courts/${this.props.court.court_id}`)
+      .get(`${DATA_URL}courts/${this.props.court.court_id}`)
       .then(data => {
         // if (data.data.playing.length > 0) {
         this.setState({
@@ -64,7 +64,7 @@ class Court extends React.Component {
   }
   startGame() {
     axios
-      .put(`${DATA_URL}/courts/${this.props.court.court_id}/start`)
+      .put(`${DATA_URL}courts/${this.props.court.court_id}/start`)
       .then(data => {
         this.getCourtInfo();
       })
@@ -74,7 +74,7 @@ class Court extends React.Component {
   }
   endGame() {
     axios
-      .put(`${DATA_URL}/courts/${this.props.court.court_id}/end`)
+      .put(`${DATA_URL}courts/${this.props.court.court_id}/end`)
       .then(data => {
         console.log(data);
         this.getCourtInfo();

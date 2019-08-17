@@ -52,7 +52,7 @@ class UserCheckIn extends React.Component {
   }
   handleClick(user_id, user_name) {
     axios
-      .post(`${DATA_URL}/checkIn/${user_id}`)
+      .post(`${DATA_URL}checkIn/${user_id}`)
       .then(data => {
         this.setState({
           info: `Player ${user_name} has been added to waiting list!`,
@@ -77,7 +77,7 @@ class UserCheckIn extends React.Component {
   //users have already checked in
   getUserInQueue() {
     axios
-      .get(`${DATA_URL}/getQueue`)
+      .get(`${DATA_URL}getQueue`)
       .then(data => {
         this.setState({
           inQueue: data.data,
@@ -91,7 +91,7 @@ class UserCheckIn extends React.Component {
   getUserCheckIn() {
     if (this.state.keyword !== '') {
       axios
-        .get(`${DATA_URL}/getCheckin/${this.state.keyword}`)
+        .get(`${DATA_URL}getCheckin/${this.state.keyword}`)
         .then(data => {
           this.setState({
             checkIn: data.data,
