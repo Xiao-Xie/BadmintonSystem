@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { DATA_URL } from '../../../../config';
 import Countdown from 'react-countdown-now';
 import ConfirmEndGame from '../CourtMgmt/confirmEndGame';
 import GameCountDown from '../CourtMgmt/gameCountDown';
@@ -13,6 +12,9 @@ import SearchUser from './searchUsers';
 import SearchResults from './searchResults';
 import MySnackbarContentWrapper from './notification';
 
+const DATA_URL =
+  process.env.DATA_URL || 'https://new-bee-sports.herokuapp.com/';
+console.log(DATA_URL);
 //Material UI Components
 import {
   Grid,
@@ -51,8 +53,10 @@ class UserCheckIn extends React.Component {
     this.setState({ open: false });
   }
   handleClick(user_id, user_name) {
+    const url = `${DATA_URL}checkIn/${user_id}`;
+    console.log(url);
     axios
-      .post(`${DATA_URL}checkIn/${user_id}`)
+      .post(url)
       .then(data => {
         this.setState({
           info: `Player ${user_name} has been added to waiting list!`,
@@ -74,10 +78,12 @@ class UserCheckIn extends React.Component {
       }
     });
   }
-  //users have already checked in
+  //users have already checked in//
   getUserInQueue() {
+    const url = `${DATA_URL}getQueue`;
+    console.log(url);
     axios
-      .get(`${DATA_URL}getQueue`)
+      .get(url)
       .then(data => {
         this.setState({
           inQueue: data.data,
@@ -89,9 +95,11 @@ class UserCheckIn extends React.Component {
   }
   //users can checkin
   getUserCheckIn() {
+    const url = `${DATA_URL}getCheckin/${this.state.keyword}`;
+    console.log(url);
     if (this.state.keyword !== '') {
       axios
-        .get(`${DATA_URL}getCheckin/${this.state.keyword}`)
+        .get(url)
         .then(data => {
           this.setState({
             checkIn: data.data,
