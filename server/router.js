@@ -7,7 +7,7 @@ const seeding = require('../db/seedDB');
 //Route different requests to different endpoints
 
 //all courts with default values
-router.get('/courtlist', courts.getCourtInventory);
+router.get('/courts/inventory', courts.getCourtInventory);
 
 //activate a court for the day
 router.post('/courts/open', courts.openCourt);
