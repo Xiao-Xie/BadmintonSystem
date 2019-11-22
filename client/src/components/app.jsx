@@ -11,18 +11,33 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      courtList: [],
+      inActiveCourtList: [],
+      activeCourtList: [],
     };
   }
   componentDidMount() {
     this.getActiveCourts();
+    this.getInActiveCourts();
   }
   getActiveCourts() {
     axios
-      .get(`${datapoint}/courtlist`)
+      .get(`${datapoint}/courts/active`)
       .then(data => {
         this.setState({
-          courtList: data.data,
+          activeCourtList: data.data,
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  getInActiveCourts() {
+    axios
+      .get(`${datapoint}/courts/inventory`)
+      .then(data => {
+        this.setState({
+          inActiveCourtList: data.data,
         });
       })
       .catch(err => {
@@ -37,7 +52,7 @@ class App extends React.Component {
         justify="space-around"
         spacing={5}>
         <UserCheckIn />
-        <CourtList courts={this.state.courtList} />
+        <CourtList activeCourts={this.state.activeCourtList} inactiveCourts={this.state.inActiveCourtList} />
       </Grid>
     );
   }

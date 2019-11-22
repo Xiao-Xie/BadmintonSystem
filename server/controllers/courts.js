@@ -14,8 +14,8 @@ module.exports = {
   },
 
   openCourt: (req, res) => {
-    let params = req.body;
-    console.log(params);
+    let params = req;
+    console.log(params.body);
   },
 
   //get a list of active courts

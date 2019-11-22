@@ -1,9 +1,11 @@
 const express = require('express');
 const path = require('path');
 // const cors = require('cors');
+const bodyparser = require('body-parser');
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../client')));
+app.use(bodyparser.json());
 
 const PORT = process.env.PORT || 9000;
 
