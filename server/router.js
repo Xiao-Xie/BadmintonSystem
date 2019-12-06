@@ -51,4 +51,40 @@ router.get('/view/viewcheckin', seeding.viewcheckin);
 // //users are ready to start a game on a court
 // router.get('./courts/:courtid/waitinglist',controller.getWaitingList);
 
+
+
+//-----------CLASSES------------//
+//create class
+router.post('/classes/new', classes.create);
+//update class
+router.put('/classes/:class_id', classes.update);
+
+//-----------COACHES------------//
+//create coach
+router.post('/coaches/new', coaches.create);
+//update coach info
+router.put('/coaches/:coach_id', coaches.update);
+
+//-----------Students------------//
+//create student
+router.post('/students/new', students.create);
+//update student info
+router.put('/students/:student_id', students.update);
+
+//-----------CLASS ELECTIONS------------//
+//create election
+router.post('/elections/new', elections.create);
+//update election info
+router.put('/elections/:election_id', elections.update);
+//delet election info
+router.delete('/elections/:election_id', elections.update);
+
+//-----------Checkin and Attendancy-------//
+//create checkin record
+router.post('/checkin/new', attendancy.create);
+//update checkin record
+router.put('/checkin/:checkin_id', checkin.update);
+//delete checkin record
+router.delete('/checkin/:checkin_id', checkin.delete);
+
 module.exports = router;

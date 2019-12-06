@@ -34,39 +34,25 @@ export default function CourtDetails({ court }) {
 
   return (
     <div className={classes.root}>
-      <ExpansionPanel
-        expanded={expanded === 'panel1'}
-        onChange={handleChange('panel1')}>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header">
-          <Typography className={classes.heading}>{court.name}</Typography>
-          <Typography className={classes.secondaryHeading}>
-            Court Capacity: {court.capacity}
-          </Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          {/* <Typography>
-            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
-            Aliquam eget maximus est, id dignissim quam.
-          </Typography> */}
-          <Grid container>
-            <Grid item lg={3} md={4} sm={5}>
-              <div
-                className={`court_bg`}
-                id={`court-${court.court_id}`}
-                style={{
-                  backgroundImage: `url(./assets/${court.court_id}.jpeg)`,
-                }}
-              />
-            </Grid>
-            <Grid item lg={9} md={8} sm={7}>
-              <Court court={court} />
-            </Grid>
-          </Grid>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+
+      <Typography className={classes.heading}>{court.name}</Typography>
+      <Typography className={classes.secondaryHeading}>
+        Court Capacity: {court.capacity}
+      </Typography>
+      <Grid container>
+        <Grid item lg={3} md={4} sm={5}>
+          <div
+            className={`court_bg`}
+            id={`court-${court.court_id}`}
+            style={{
+              backgroundImage: `url(./assets/${court.court_id}.jpeg)`,
+            }}
+          />
+        </Grid>
+        <Grid item lg={9} md={8} sm={7}>
+          <Court court={court} />
+        </Grid>
+      </Grid>
     </div>
   );
 }
